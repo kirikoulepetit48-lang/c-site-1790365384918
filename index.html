@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test d'Amour de JORA</title>
+<style>
+body{background:#000;color:#fff;font-family:Arial;text-align:center;padding:15px}
+.card{background:#111;padding:28px;border-radius:25px;max-width:400px;margin:30px auto;border:2px solid #ff0055;box-shadow:0 0 30px #ff005544}
+input{padding:16px;width:85%;border-radius:12px;border:none;margin:10px 0;font-size:17px;text-align:center;background:#222;color:#fff}
+button{padding:16px;background:linear-gradient(90deg,#ff0055,#ff8a00);border:none;border-radius:12px;color:white;font-weight:bold;font-size:18px;width:95%;cursor:pointer;margin-top:15px}
+.barre{background:#222;height:18px;border-radius:10px;margin:15px 0;overflow:hidden}
+.remplissage{height:100%;background:linear-gradient(90deg,#ff0055,#ff8a00);border-radius:10px;transition:1s}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>❤️ TEST D'AMOUR ❤️</h1>
+<p>De JORA - 99% vrai</p>
+<input type="text" id="p1" placeholder="Ton prénom">
+<input type="text" id="p2" placeholder="Prénom de ton crush">
+<button onclick="tester()">💘 Calculer notre amour</button>
+<div id="res" style="display:none;margin-top:25px"></div>
+</div>
+<script>
+function tester(){
+let a=document.getElementById('p1').value.trim();
+let b=document.getElementById('p2').value.trim();
+if(!a||!b)return alert('Tape les 2 prénoms !');
+let base=(a+b).split('').reduce((x,y)=>x+y.charCodeAt(0),0);
+let pct=50+(base%49);
+let msg="",emoji="";
+if(pct<60){msg="C'est compliqué entre vous... mais l'amour peut tout changer";emoji="💔";}
+else if(pct<80){msg="Vous êtes faits l'un pour l'autre ! Il y a une vraie connexion";emoji="💕";}
+else if(pct<95){msg="WOW Âme sœur détectée ! Vous allez vous marier";emoji="💍";}
+else{msg="C'EST LE DESTIN ! Vous allez avoir des bébés mignons";emoji="👶❤️";}
+
+let res=document.getElementById('res');
+res.style.display='block';
+let vraiLien="https://kirikoulepetit48-lang.github.io/Amour.html";
+let texteFinal=`${emoji} TEST D'AMOUR JORA\n${a} + ${b} = ${pct}% d'amour\n${msg}\n\nTeste toi et ton crush ici: ${vraiLien}`;
+
+res.innerHTML=`
+<h2>${a} ❤️ ${b}</h2>
+<h1 style=font-size:50px>${pct}%</h1>
+<div class=barre><div class=remplissage style=width:${pct}%></div></div>
+<p style=font-size:18px>${emoji} ${msg}</p>
+<p style=margin-top:10px;color:#aaa>📅 Mariage prévu: 2028 | 👶 2 bébés</p>
+<button style=background:#25D366 onclick="partager()">📲 Partager sur WhatsApp</button>
+<br><br>
+<button style=background:#222 onclick="location.reload()">🔄 Re-tester</button>
+`;
+window.texteFinal=texteFinal;
+}
+function partager(){
+window.open('https://wa.me/?text='+encodeURIComponent(window.texteFinal),'_blank');
+}
+</script>
+</body>
+</html>
